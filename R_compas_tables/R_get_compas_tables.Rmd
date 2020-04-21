@@ -1,0 +1,32 @@
+Importamos las librerías necesarias. Si hace falta, hay que instalarlas descomentando la línea necesaria.
+```{r}
+# install.packages("DBI")
+# install.packages("RSQLite")
+
+library(DBI)
+library(RSQLite)
+```
+
+Escribimos la ubicación del archivo compas.db
+Utilizamos los drivers instalados de SQLite para poder pasar el archivo a un data.frame que puede ser manipulado por R.
+```{r}
+filename <- "compas.db"
+sqlite.driver <- dbDriver("SQLite")
+db <- dbConnect(sqlite.driver,
+                dbname = filename)
+```
+
+El objeto db contiene las 7 tablas que pertenecen a compas.
+Para obtener un dataframe con alguna de las tablas, vasta con descomentar la linea que lee una tabla.
+
+```{r}
+dbListTables(db)
+# tabla_compas <- dbReadTable(db,"people")
+```
+
+
+Ejemplo
+```{r}
+people <- dbReadTable(db,"people")
+head(people)
+```
