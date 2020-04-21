@@ -30,3 +30,4 @@ Ejemplo
 people <- dbReadTable(db,"people")
 head(people)
 ```
+
