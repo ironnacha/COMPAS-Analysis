@@ -20,14 +20,60 @@ El objeto db contiene las 7 tablas que pertenecen a compas.
 Para obtener un dataframe con alguna de las tablas, vasta con descomentar la linea que lee una tabla.
 
 ```{r}
-dbListTables(db)
-# tabla_compas <- dbReadTable(db,"people")
-```
+# dbListTables(db)
+# >>> "people"  "casearrest"  "charge"  "compas"  "jailhistory" "prisonhistory" "summary"
 
-
-Ejemplo
-```{r}
 people <- dbReadTable(db,"people")
-head(people)
+casearrest <- dbReadTable(db,"casearrest")
+charge <- dbReadTable(db,"charge")
+compas <- dbReadTable(db,"compas")
+jailhistory <- dbReadTable(db,"jailhistory")
+prisonhistory <- dbReadTable(db,"prisonhistory")
+summary <- dbReadTable(db,"summary")
+```
+Vemos en el siguiente diagrama que todas las tablas poseen una única llave primaria que es el id mientras que posee una única llave foránea, el id de una persona. Mientras que la tabla people representa a una de estas, siendo su única llave primaria su id.
+
+![Diagrama E-R](compas_ER_model.png)
+
+```{r}
+str(people)
 ```
 
+**people** -> Una entidad persona. Es la tabla principal que almacena todos los datos de un condenado, tal como su sexo, edad, raza, etc... y con la que se trabajará en mayor medida.
+
+
+```{r}
+str(casearrest)
+```
+
+**casearrest** -> EL caso de arresto, se repiten personas que se diferencian por días de arresto y grado del cargo principalmente.
+
+```{r}
+str(charge)
+```
+
+**charge** -> Especifica el cargo que se le acusa a una persona y otros datos.
+
+
+```{r}
+str(compas)
+```
+
+**compas** -> Es la puntuación compas que se le asigna a una persona. Generalmente se presentan las tres puntuaciones para cada individuo (Riesgo de reincidencia con y sin violencia y riesgo de no acudir a la citación).
+
+```{r}
+str(jailhistory)
+```
+**jailhistory** -> Esta tabla guarda el historial de arresto en custodia????? de cada persona. Fecha y hora de cuando sale y entra.
+
+```{r}
+str(prisonhistory)
+```
+
+**prisonhistory** -> Esta tabla guarda el historial de arresto con prisión?????? de cada persona. Fecha y hora de cuando sale y entra.
+
+```{r}
+str(summary)
+```
+
+**summary** -> Ni idea :(
