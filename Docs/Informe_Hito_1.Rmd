@@ -1,0 +1,16 @@
+---
+title: "Análisis de COMPAS como predictor sesgado"
+output: html_notebook
+---
+
+**Ignacia Aguilera, Camilo Ramírez, Sebastián Zapata** - ***Grupo 16***<br>
+Curso CC5206 Introducción a la Minería de Datos<br>
+Profesores: Felipe Bravo, Bárbara Poblete<br>
+Facultad de Ciencias Físicas y Matemáticas, Universidad de Chile
+
+# Introducción y motivación
+
+Este informe se enmarca en el curso de Introducción a la Minería de Datos (CC5206) de la Universidad de Chile, para documentar el hito inicial (1) del proyecto minería de datos sobre el dataset asociado a COMPAS de [Northpointe](https://www.northpointe.com/) generado por [ProPublica](https://www.propublica.org/).
+
+COMPAS es el acrónimo de *Correctional Offender Management Profiling for Alternative Sanctions*, que es traducible como "Gestión de perfiles de reos penitenciarios para penas alternativas" y corresponde a un algoritmo que busca predecir la probabilidad de reincidencia de un criminal al asignarle un puntaje (*score*) que representa la misma ([se puede encontrar su documentación aquí](https://assets.documentcloud.org/documents/2840784/Practitioner-s-Guide-to-COMPAS-Core.pdf)). Este método pertenece a la familia de algoritmos de evaluación de riesgo penitenciario (*risk assesment*) y se ha utilizado en diversas cortes de Estados Unidos como insumo para los jueces en la determinación del otorgamiento de libertad condicional a los imputados por algún delito.Esto responde a la necesidad de ese país de doscongestionar sus prisiones de forma eficiente. Es importante distinguir que este algoritmo no fue diseñado ni se ha utilizado para determinar la culpabilidad de alguna persona en un delito, ni para determinar una pena.
+
