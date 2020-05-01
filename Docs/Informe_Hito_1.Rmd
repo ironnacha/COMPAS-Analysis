@@ -20,4 +20,23 @@ Un [estudio](https://www.propublica.org/article/machine-bias-risk-assessments-in
 
 El objetivo de este proyecto es analizar y detectar los posibles sesgos que tenga COMPAS en un espectro más amplio de atributos además de verificar el sesgo racial descrito por el informe de ProPublica. Adicional a esto se busca determinar una forma de disminuir los sesgos detectados o determinar la imposibilidad de realizar lo anterior.
 
-Para cumplir este objetivo se trabaja con el dataset principal publicado en el repositorio contenido en el fichero ```database.db``` que corresponde a una base de datos de sqlite3. Esta se importa en R y utilizando esta herramienta, se hace un análisis de datos, eventualmente una limpieza y reducción de atributos para comenzar a analizar correlaciones que se puedan encontrar, los atributos que se consideran de interés corresponden a la etnia (raza) y género de las personas. En base a correlaciones de interés encontradas, se aplicarán herramientas de minería de datos más sofisticadas en los próximos hitos del proyecto.
+Para cumplir este objetivo se trabaja con el dataset principal publicado en el repositorio contenido en el fichero ```compas.db``` que corresponde a una base de datos de sqlite3. Esta se importa en R y utilizando esta herramienta, se hace un análisis de datos, eventualmente una limpieza y reducción de atributos para comenzar a analizar correlaciones que se puedan encontrar, los atributos que se consideran de interés corresponden a la etnia (raza) y género de las personas. En base a correlaciones de interés encontradas, se aplicarán herramientas de minería de datos más sofisticadas en los próximos hitos del proyecto.
+
+# Exploración de datos
+
+A modo de hacer el informe replicable, se deja explícito el código fuente utilizado. Para trabajar con ```compas.db``` se comienza importando las librerías requeridas, importando el fichero de la base de datos a través de una clase de SQL manejable por R para posteriormente extraer los dataframes del mismo.
+```{r, results="hide"}
+library(RSQLite)
+
+filename <- "compas.db"
+sqlite.driver <- dbDriver("SQLite")
+db <- dbConnect(sqlite.driver, dbname = filename)
+
+casearrest    <- dbReadTable(db,"casearrest")
+charge        <- dbReadTable(db,"charge")
+compas        <- dbReadTable(db,"compas")
+jailhistory   <- dbReadTable(db,"jailhistory")
+prisonhistory <- dbReadTable(db,"prisonhistory")
+summary       <- dbReadTable(db,"summary")
+people        <- dbReadTable(db,"people")
+```
