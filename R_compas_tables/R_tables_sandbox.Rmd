@@ -1,0 +1,46 @@
+---
+title: "Tables_sandbox"
+output: tables_sandbox_html
+---
+
+Se comienza importando las librerías, estableciendo la ubicación del database así como el driver de SQLite para generar una clase de SQL manejable por R. Posteriormente se extraen los dataframes del mismo.
+```{r}
+library(RSQLite)
+
+filename <- "compas.db"
+sqlite.driver <- dbDriver("SQLite")
+db <- dbConnect(sqlite.driver,
+                dbname = filename)
+
+people <- dbReadTable(db,"people")
+casearrest <- dbReadTable(db,"casearrest")
+charge <- dbReadTable(db,"charge")
+compas <- dbReadTable(db,"compas")
+jailhistory <- dbReadTable(db,"jailhistory")
+prisonhistory <- dbReadTable(db,"prisonhistory")
+summary <- dbReadTable(db,"summary")
+```
+
+Ejemplos de contenido de las tablas:
+```{r}
+head(people)
+head(casearrest)
+head(charge)
+head(compas)
+head(jailhistory)
+head(prisonhistory)
+head(summary)
+```
+
+Análisis de atributos de cada relación:
+```{r}
+str(people)
+```
+Resumen de cada relación:
+```{r}
+summary(people)
+```
+Extracción de valores de atributos de clase no explícito:
+```{r}
+unique(people$sex)
+```
